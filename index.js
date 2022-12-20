@@ -9,6 +9,9 @@ const path = require('path');
 
 PORT = process.env.PORT || 5000;
 
+//Assets location:
+//Otherwise we will get
+//"Refused to execute script from 'http://localhost:5000/js/app.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled." error.
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
