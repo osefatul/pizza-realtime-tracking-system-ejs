@@ -5,9 +5,8 @@ const ejs = require('ejs');
 const expressJsLayout = require('express-ejs-layouts');
 const path = require('path');
 
-
-
 PORT = process.env.PORT || 5000;
+
 
 //Assets location:
 //Otherwise we will get
