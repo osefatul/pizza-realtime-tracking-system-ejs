@@ -4,15 +4,13 @@ body {
   color: #232323;
 }
 
-nav li:last-child a {
-  background-color: #fe5f1e;
-}
-nav li:last-child a:hover {
-  background: #b23301;
+nav {
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
 }
 
 nav li:last-child a {
-  background: #fe5f1e;
+  background-color: #fe5f1e;
 }
 nav li:last-child a:hover {
   background: #b23301;
@@ -48,11 +46,11 @@ section.hero {
 }
 
 .btn-primary {
-  background: #fe5f1e;
-  transition: all 0.3s ease-in-out;
+  background-color: #fe5f1e !important;
+  border-radius: 50%;
 }
 .btn-primary:hover {
-  background: #b23301;
+  background: #b23301 !important;
 }
 
 section.cart {
@@ -60,4 +58,20 @@ section.cart {
 }
 section.cart .amount {
   color: #fe5f1e;
+}
+
+section.login {
+  background: #f8f8f8;
+  min-height: calc(100vh - 86px);
+}
+section.login a {
+  color: #fe5f1e;
+}
+section.login a:hover {
+  color: #b23301;
+}
+
+.noty_theme__mint {
+  border-radius: 50px !important;
+  padding-left: 8px !important;
 }

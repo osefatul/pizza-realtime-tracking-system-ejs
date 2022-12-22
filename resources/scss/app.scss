@@ -9,6 +9,11 @@ body {
 }
 
 
+nav{
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
 
 
 nav li:last-child a{
@@ -19,12 +24,7 @@ nav li:last-child a{
     }
 }
 
-nav li:last-child a {
-    background: $primary;
-    &:hover {
-        background: $primary-hover;
-    }
-}
+
 
 nav li a {
     transition: $smooth;
@@ -39,6 +39,8 @@ section.hero {
 .size {
     background: $secondary;
 }
+
+
 .add-to-cart {
     border: 2px solid $primary;
     color: $primary;
@@ -53,19 +55,34 @@ section.hero {
     }
 }
 
-
 .btn-primary {
-    background: $primary;
-    transition: $smooth;
-    &:hover {
-        background: $primary-hover;
+    background-color: $primary !important;
+    border-radius: 50%;
+    &:hover{
+        background: $primary-hover !important;
     }
 }
 
 
 section.cart {
     background: $secondary;
-    .amount{
+    .amount {
         color: $primary;
     }
+}
+
+section.login {
+    background: $secondary;
+    min-height: calc(100vh - 86px);
+    a {
+        color: $primary;
+        &:hover {
+            color: $primary-hover;
+        }
+    }
+}
+
+.noty_theme__mint {
+    border-radius: 50px!important;
+    padding-left: 8px!important;
 }

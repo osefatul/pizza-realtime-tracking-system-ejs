@@ -35,9 +35,15 @@ app.get("/cart", (req, res) => {
     res.render("customers/cart");// views/render cart.ejs
 })
 
+//login
+app.get("/login", (req, res) => {
+    res.render("auth/login");// views/render login.ejs
+})
 
-
-
+//register
+app.get("/register", (req, res) => {
+    res.render("auth/register");// views/render login.ejs
+})
 
 
 
