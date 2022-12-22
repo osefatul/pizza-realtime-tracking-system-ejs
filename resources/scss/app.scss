@@ -32,6 +32,7 @@ nav li a {
         color: $primary;
     }
 }
+
 section.hero {
     background: $secondary;
 }
@@ -53,11 +54,18 @@ section.hero {
 }
 
 
-
 .btn-primary {
     background: $primary;
     transition: $smooth;
     &:hover {
         background: $primary-hover;
+    }
+}
+
+
+section.cart {
+    background: $secondary;
+    .amount{
+        color: $primary;
     }
 }

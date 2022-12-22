@@ -29,6 +29,7 @@ app.get("/", (req, res) => {
     res.render("home");// views/render home.ejs 
 })
 
+
 // test cart page  
 app.get("/cart", (req, res) => {
     res.render("customers/cart");// views/render cart.ejs
