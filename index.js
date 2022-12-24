@@ -23,29 +23,26 @@ mongoDB.connect(process.env.MONGO_URL).then(()=>{
 mongoDB.connection.on('error', console.error.bind(console, 'connection error:'));
 
 
-
-//session config
-
+// Session store
 let mongoStore = new MongoDbStore({
     mongooseConnection: mongoDB.connection,
     collection: 'sessions'
 })
 
+// Event emitter
+// const eventEmitter = new Emitter()
+// app.set('eventEmitter', eventEmitter)
+
+// Session config
 app.use(session({
-    secret: process.env.COOKIE_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    store: mongoStore,
-    cookie: { 
-        secure: true,
-        maxAge: 1000*60*60*24} //24hrs
+secret: process.env.COOKIE_SECRET,
+resave: false,
+store: mongoStore,
+saveUninitialized: false,
+cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 hour
 }))
 
 app.use(flash())
-
-
-
-
 
 
 
