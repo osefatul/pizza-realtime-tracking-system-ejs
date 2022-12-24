@@ -45,13 +45,20 @@ cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 hour
 app.use(flash())
 
 
-
 //Assets location:
 //Otherwise we will get
 //"Refused to execute script from 'http://localhost:5000/js/app.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled." error.
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+
+
+//GLOBAL MIDDLEWARE FOR SETTING SESSION IN FRONTEND
+app.use((req, res, next)=>{
+    res.locals.session = req.session;
+    next();
+})
+
 
 apiRoutes(app)
 
