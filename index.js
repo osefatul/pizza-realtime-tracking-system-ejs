@@ -4,7 +4,8 @@ const app = express();
 const ejs = require('ejs');
 const expressJsLayout = require('express-ejs-layouts');
 const path = require('path');
-
+const mongoDB = require("mongoose")
+const apiRoutes = require("./routes/api")
 PORT = process.env.PORT || 5000;
 
 
@@ -16,37 +17,28 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
 
+
+apiRoutes(app)
+
+
 //SET TEMPLATE ENGINE..
 app.use(expressJsLayout);
 app.set("views", path.join(__dirname,"/resources/views")) // to find views
 app.set("view engine", "ejs")
 
 
-
 // All the <%- body %> goes here below...
-//test home page
-app.get("/", (req, res) => {
-    res.render("home");// views/render home.ejs 
+//This should always come after setting view engine
+const routes = require("./routes/web");
+const webRoutes = routes(app)
+
+
+
+mongoDB.set('strictQuery', true)
+mongoDB.connect(process.env.MONGO_URL).then(()=>{
+    console.log("Connected to MongoDB")
 })
-
-
-// test cart page  
-app.get("/cart", (req, res) => {
-    res.render("customers/cart");// views/render cart.ejs
-})
-
-//login
-app.get("/login", (req, res) => {
-    res.render("auth/login");// views/render login.ejs
-})
-
-//register
-app.get("/register", (req, res) => {
-    res.render("auth/register");// views/render login.ejs
-})
-
-
-
+mongoDB.connection.on('error', console.error.bind(console, 'connection error:'));
 
 
 app.listen(PORT, ()=>{

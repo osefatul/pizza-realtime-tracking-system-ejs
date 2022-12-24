@@ -1,0 +1,10 @@
+### Create new user
+POST http://localhost:5000/api/v1/createPizza
+Content-Type: application/json
+
+{
+"name": "Pepperoni",
+"image": "pizza.png",
+"price": "500",
+"size": "medium"
+}
