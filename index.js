@@ -8,7 +8,7 @@ const mongoDB = require("mongoose")
 const apiRoutes = require("./routes/api")
 
 const session = require("express-session")
-const flash = require("flash")
+const flash = require("express-flash")
 const MongoDbStore = require('connect-mongo')(session)
 
 
@@ -49,6 +49,7 @@ app.use(flash())
 //Otherwise we will get
 //"Refused to execute script from 'http://localhost:5000/js/app.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled." error.
 app.use(express.static('public'))
+//when body is receiving data..
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 

@@ -30,9 +30,6 @@ const updateCart = async (pizza)=>{
         }).show();
     }
 
-    
-
-
 }
 
 
