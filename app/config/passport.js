@@ -32,7 +32,7 @@ const init = (passport)=>{
         done(null, user._id)
     })
 
-    //
+    //get data from session when login is successful..
     passport.deserializeUser((id, done) => {
         User.findById(id, (err, user) => {
             done(err, user)
