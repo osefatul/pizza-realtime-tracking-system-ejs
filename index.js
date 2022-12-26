@@ -10,8 +10,7 @@ const apiRoutes = require("./routes/api")
 const session = require("express-session")
 const flash = require("express-flash")
 const MongoDbStore = require('connect-mongo')(session)
-
-
+const passport = require('passport')
 
 
 
@@ -21,6 +20,7 @@ mongoDB.connect(process.env.MONGO_URL).then(()=>{
     console.log("Connected to MongoDB")
 })
 mongoDB.connection.on('error', console.error.bind(console, 'connection error:'));
+
 
 
 // Session store
@@ -42,7 +42,13 @@ saveUninitialized: false,
 cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 hour
 }))
 
-app.use(flash())
+
+
+//passport config
+const passportInit = require("./app/config/passport")
+passportInit(passport)
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 //Assets location:
@@ -52,16 +58,18 @@ app.use(express.static('public'))
 //when body is receiving data..
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+app.use(flash())
 
 
-//GLOBAL MIDDLEWARE FOR SETTING SESSION IN FRONTEND
+
+//GLOBAL MIDDLEWARE FOR SETTING SESSION & USER IN FRONTEND
 app.use((req, res, next)=>{
-    res.locals.session = req.session;
+    res.locals.session = req.session; 
+    res.locals.user = req.user;// from passport.js
+    
     next();
 })
 
-
-apiRoutes(app)
 
 //SET TEMPLATE ENGINE..
 app.use(expressJsLayout);
@@ -69,15 +77,11 @@ app.set("views", path.join(__dirname,"/resources/views")) // to find views
 app.set("view engine", "ejs")
 
 
+apiRoutes(app)
 //All the <%- body %> goes here below...
 //This should always come after setting view engine
 const routes = require("./routes/web");
 const webRoutes = routes(app)
-
-
-
-
-
 
 
 
