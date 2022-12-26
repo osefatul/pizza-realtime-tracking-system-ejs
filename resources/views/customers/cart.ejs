@@ -41,6 +41,7 @@
                 <span class="amount text-2xl font-bold ml-2">$ <%= session.cart.totalPrice %></span>
             </div>
 
+            <% if(user) { %>
             <div>
                 <form 
                 action="/orders" 
@@ -82,6 +83,7 @@
                     </div>
                 </form>
             </div>
+            <% }%>
         </div>
 
     </div>
