@@ -3,7 +3,8 @@ const authController = require("../app/http/controllers/authController");
 const cartController = require("../app/http/controllers/customer/cartController");
 
 // Middlewares 
-const guest = require('../app/http/middleware/guest')
+const guest = require('../app/http/middleware/guest');
+const orderController = require("../app/http/controllers/customer/ordersControllers");
 
 
 const initRoute = (app)=>{
@@ -24,6 +25,8 @@ const initRoute = (app)=>{
 
     app.get("/cart", cartController().cart)
     app.post("/update-cart", cartController().updateCart)
+
+    app.post("/orders", orderController().store)
 }
 
 

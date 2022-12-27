@@ -7,16 +7,16 @@ const orderSchema = new Schema({
         ref: "User",
         required: true
     },
-    items:{type:String, required:true},
+    items: {type: Object, required: true },
     phone:{type:String, required:true},
     address:{type:String, required:true},
     paymentType:{type:String, default:"COD"},
     paymentStatus:{type:Boolean, default:false},
     status:{type:String, default:"order_placed"},
 },
-{timestamps:tues}
+{timestamps:true}
 )
 
-module.exports = mongoose.model("Order", orderSchema)
+module.exports = {Order: mongoose.model("Order", orderSchema)}
 
 

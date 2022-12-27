@@ -1,8 +1,8 @@
 import axios from "axios"
 import Noty from "noty";
 
-
-const addTOCarts = document.querySelectorAll(".add-to-cart") // array
+// array of btns
+const addTOCarts = document.querySelectorAll(".add-to-cart") 
 const cartCounter = document.querySelector("#cartCounter");
 
 
