@@ -1,4 +1,4 @@
-const {Order} = require("../../../models/orderSchema")
+const {Order} = require("../../../../models/orderSchema")
 const moment = require("moment");
 
 

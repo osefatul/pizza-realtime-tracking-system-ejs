@@ -1,5 +1,7 @@
 import axios from "axios"
 import Noty from "noty";
+import { initAdmin } from "./admin";
+
 
 // array of btns
 const addTOCarts = document.querySelectorAll(".add-to-cart") 
@@ -49,3 +51,7 @@ if(alertMsg){
         alertMsg.remove();
     },2000)
 }
+
+
+//call initAdmin
+initAdmin();
