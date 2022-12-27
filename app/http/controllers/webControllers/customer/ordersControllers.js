@@ -36,6 +36,8 @@ const orderController = ()=>{
                 { customerId: req.user._id },
                 null,
                 { sort: { 'createdAt': -1 } } )
+            // we don't want any cache when we go back to previous page..
+            // because we were receiving messageAlert if we return back to the page.
             res.header('Cache-Control', 'no-store')
             res.render('customers/orders', { orders: orders, moment: moment })
         },

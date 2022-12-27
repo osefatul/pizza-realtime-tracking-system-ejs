@@ -105,6 +105,5 @@ const generateMarkup = (orders) =>{
             </td>
         </tr>
         `
-        }).join('')
-
+    }).join("")
 }

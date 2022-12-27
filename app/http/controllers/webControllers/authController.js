@@ -4,6 +4,10 @@ const passport = require("passport");
 
 const authController = ()=>{
 
+    const _getRedirectUrl = (req) =>{
+        return req.user.role === "admin" ? "/admin/orders" : "customer/orders"
+    }
+
     return {
         async login (req, res) {
             res.render("auth/login")
@@ -32,7 +36,7 @@ const authController = ()=>{
                         return next(err)
                     }
 
-                    // return res.redirect(_getRedirectUrl(req))
+                    return res.redirect(_getRedirectUrl(req))
                     return res.redirect('/')
                 })
             })(req, res, next)
