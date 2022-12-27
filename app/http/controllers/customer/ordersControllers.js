@@ -1,4 +1,6 @@
 const {Order} = require("../../../models/orderSchema")
+const moment = require("moment");
+
 
 const orderController = ()=>{
 
@@ -8,8 +10,7 @@ const orderController = ()=>{
         async store(req, res){
             //validate order
             const {phone, address, paymentType} = req.body;
-            console.log(req.body)
-
+            // console.log(req.body)
             if(!phone || !address){
                 return res.status(422).json({message:"All fields are required"})
             }
@@ -22,12 +23,22 @@ const orderController = ()=>{
                     address
                 })
                 await order.save()
-                
-
+                req.flash("success", "Order saved successfully");
+                delete req.session.cart
+                res.redirect("/cart")
             }catch(err){
                 console.log(err)
             }
-        }
+        },
+
+        async index(req, res) {
+            const orders = await Order.find(
+                { customerId: req.user._id },
+                null,
+                { sort: { 'createdAt': -1 } } )
+            res.header('Cache-Control', 'no-store')
+            res.render('customers/orders', { orders: orders, moment: moment })
+        },
     }
 }
 

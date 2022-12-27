@@ -27,6 +27,7 @@ const initRoute = (app)=>{
     app.post("/update-cart", cartController().updateCart)
 
     app.post("/orders", orderController().store)
+    app.get("/customer/orders", orderController().index)
 }
 
 
