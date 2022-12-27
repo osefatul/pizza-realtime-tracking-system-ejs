@@ -23,9 +23,9 @@ const orderController = ()=>{
                     address
                 })
                 await order.save()
-                req.flash("success", "Order saved successfully");
+                req.flash("success", "Order added successfully");
                 delete req.session.cart
-                res.redirect("/cart")
+                res.redirect("/customer/orders")
             }catch(err){
                 console.log(err)
             }

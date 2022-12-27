@@ -64,6 +64,8 @@ var updateCart = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
+
+//Add cart buttons
 addTOCarts.forEach(function (btn) {
   btn.addEventListener("click", function (e) {
     // console.log(e)
@@ -72,6 +74,14 @@ addTOCarts.forEach(function (btn) {
     updateCart(pizza);
   });
 });
+
+//remove flash alert message after x seconds
+var alertMsg = document.querySelector("#success-alert"); // if id exists
+if (alertMsg) {
+  setTimeout(function () {
+    alertMsg.remove();
+  }, 2000);
+}
 
 /***/ }),
 

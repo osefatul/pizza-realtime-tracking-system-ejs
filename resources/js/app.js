@@ -7,8 +7,6 @@ const cartCounter = document.querySelector("#cartCounter");
 
 
 const updateCart = async (pizza)=>{
-
-    
     try{
         const res = await axios.post("/update-cart", pizza);
         cartCounter.innerText = res.data.totalQty
@@ -33,7 +31,7 @@ const updateCart = async (pizza)=>{
 }
 
 
-
+//Add cart buttons
 addTOCarts.forEach((btn)=>{
     btn.addEventListener("click", (e)=>{
         // console.log(e)
@@ -42,3 +40,12 @@ addTOCarts.forEach((btn)=>{
         updateCart(pizza);
     })
 })
+
+
+//remove flash alert message after x seconds
+const alertMsg = document.querySelector("#success-alert")// if id exists
+if(alertMsg){
+    setTimeout(()=> {
+        alertMsg.remove();
+    },2000)
+}
