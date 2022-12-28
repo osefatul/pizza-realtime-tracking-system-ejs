@@ -36,6 +36,7 @@ const initRoute = (app)=>{
     //customer routes
     app.post("/orders", auth, orderController().store)
     app.get("/customer/orders", auth, orderController().index)
+    app.get("/customer/orders/:id", auth, orderController().show)
 
     //admin routes
     app.get("/admin/orders", admin, adminOrderController().index);

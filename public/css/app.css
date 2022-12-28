@@ -245,6 +245,12 @@ body {
   color: #232323;
 }
 
+.navHeader {
+  width: 100%;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
 .vanillaContainer {
   max-width: 1592px;
   width: 90%;
@@ -324,4 +330,30 @@ section.login a:hover {
 
 a.link {
   color: #fe5f1e;
+}
+
+section.status {
+  background: #f8f8f8;
+  min-height: calc(100vh - 86px);
+}
+section.status .status-box {
+  padding: 60px 0;
+}
+section.status .status-box ul {
+  margin-left: 84px;
+}
+section.status .status-box ul li span {
+  position: relative;
+  padding-left: 20px;
+}
+section.status .status-box ul li span:after {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 35%;
+  background: #232323;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  box-shadow: 0 0 1px 10px #f8f8f8;
 }
