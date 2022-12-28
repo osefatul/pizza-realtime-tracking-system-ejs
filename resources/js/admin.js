@@ -10,7 +10,6 @@ import Noty from "noty";
 headers: {"X-Requested-With":"XMLHttpRequest"} explained:
 
 The purpose of the "X-Requested-With" header is to indicate that the request is being made using the XMLHttpRequest object, which is a JavaScript object that allows web pages to perform HTTP requests asynchronously. This header is often used to signal to the server that the request is an AJAX (Asynchronous JavaScript and XML) request, as opposed to a standard HTTP request.
-
 In this case, it is likely that the server will use the presence of this header to determine whether or not to process the request as an AJAX request, and to return the appropriate response accordingly.
 
 further details: https://www.w3schools.com/xml/xml_http.asp
@@ -30,6 +29,8 @@ export const initAdmin = () =>{
             "X-Requested-With":"XMLHttpRequest"
         }
     }).then((response) => {
+        console.log(response)
+
         orders = response.data;
         markup = generateMarkup(orders);
         orderTableBody.innerHTML = markup;
@@ -68,23 +69,31 @@ const generateMarkup = (orders) =>{
             <td class="border px-4 py-2">${ order.address }</td>
             <td class="border px-4 py-2">
                 <div class="inline-block relative w-64">
+
+                    //SENDING POST REQUEST AS WE CHANGE STATUS 
                     <form action="/admin/order/status" method="POST">
                         <input type="hidden" name="orderId" value="${ order._id }">
                         <select name="status" onchange="this.form.submit()"
                             class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+
                             <option value="order_placed"
                                 ${ order.status === 'order_placed' ? 'selected' : '' }>
                                 Placed</option>
-                            <option value="confirmed" ${ order.status === 'confirmed' ? 'selected' : '' }>
+                            <option value="confirmed" 
+                                ${ order.status === 'confirmed' ? 'selected' : '' }>
                                 Confirmed</option>
-                            <option value="prepared" ${ order.status === 'prepared' ? 'selected' : '' }>
+                            <option value="prepared" 
+                                ${ order.status === 'prepared' ? 'selected' : '' }>
                                 Prepared</option>
-                            <option value="delivered" ${ order.status === 'delivered' ? 'selected' : '' }>
+                            <option value="delivered" 
+                                ${ order.status === 'delivered' ? 'selected' : '' }>
                                 Delivered
                             </option>
-                            <option value="completed" ${ order.status === 'completed' ? 'selected' : '' }>
+                            <option value="completed" 
+                                ${ order.status === 'completed' ? 'selected' : '' }>
                                 Completed
                             </option>
+
                         </select>
                     </form>
                     <div

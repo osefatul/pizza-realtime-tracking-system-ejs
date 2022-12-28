@@ -43,7 +43,6 @@ cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 hour
 }))
 
 
-
 //passport config
 const passportInit = require("./app/config/passport")
 passportInit(passport)
@@ -55,6 +54,7 @@ app.use(passport.session());
 //Otherwise we will get
 //"Refused to execute script from 'http://localhost:5000/js/app.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled." error.
 app.use(express.static('public'))
+
 //when body is receiving data..
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())

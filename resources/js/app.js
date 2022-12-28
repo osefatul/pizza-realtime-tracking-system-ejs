@@ -3,6 +3,8 @@ import Noty from "noty";
 import { initAdmin } from "./admin";
 
 
+
+
 // array of btns
 const addTOCarts = document.querySelectorAll(".add-to-cart") 
 const cartCounter = document.querySelector("#cartCounter");
@@ -45,7 +47,8 @@ addTOCarts.forEach((btn)=>{
 
 
 //remove flash alert message after x seconds
-const alertMsg = document.querySelector("#success-alert")// if id exists
+const alertMsg = document.querySelector("#success-alert")
+// if id exists
 if(alertMsg){
     setTimeout(()=> {
         alertMsg.remove();
