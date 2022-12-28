@@ -1,9 +1,10 @@
 <section class="login flex justify-center pt-24">
     <div class="w-full max-w-xs">
         
+        <!--When using POST method we are sending name attributes of element in the form to the server...  -->
         <form 
         action="/login" 
-        method="POST" 
+        method="POST"
         class="bg-white shadow-md rounded-md p-8 space-y-6">
             <% if(messages.error) { %>
             <span class="text-red-500 text-sm flex items-center justify-center">

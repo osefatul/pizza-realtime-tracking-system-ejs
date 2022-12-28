@@ -4,8 +4,6 @@ import Noty from "noty";
 
 
 
-
-
 /* 
 headers: {"X-Requested-With":"XMLHttpRequest"} explained:
 
@@ -29,8 +27,7 @@ export const initAdmin = () =>{
             "X-Requested-With":"XMLHttpRequest"
         }
     }).then((response) => {
-        console.log(response)
-
+        // console.log(response)
         orders = response.data;
         markup = generateMarkup(orders);
         orderTableBody.innerHTML = markup;
@@ -38,8 +35,6 @@ export const initAdmin = () =>{
         console.log(error);
     });
 }
-
-
 
 
 
@@ -54,10 +49,7 @@ function renderItems(items) {
 
 
 
-
-
 const generateMarkup = (orders) =>{
-
     return orders.map((order) => {
         return `
             <tr>
@@ -69,8 +61,6 @@ const generateMarkup = (orders) =>{
             <td class="border px-4 py-2">${ order.address }</td>
             <td class="border px-4 py-2">
                 <div class="inline-block relative w-64">
-
-                    //SENDING POST REQUEST AS WE CHANGE STATUS 
                     <form action="/admin/order/status" method="POST">
                         <input type="hidden" name="orderId" value="${ order._id }">
                         <select name="status" onchange="this.form.submit()"

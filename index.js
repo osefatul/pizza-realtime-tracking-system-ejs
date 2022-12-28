@@ -81,7 +81,7 @@ apiRoutes(app)
 //All the <%- body %> goes here below...
 //This should always come after setting view engine
 const routes = require("./routes/web");
-const webRoutes = routes(app)
+routes(app)
 
 
 
