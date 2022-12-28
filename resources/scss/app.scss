@@ -122,7 +122,7 @@ section.status {
     }
 
     //Dots
-    .status-box ul li span:after {
+    .status-box ul li span::after {
         content: '';
         position: absolute;
         left: -10px;
@@ -135,4 +135,47 @@ section.status {
         border-radius: 50%;
         box-shadow: 0 0 1px 10px $secondary;
     }
+
+    //Icons styles
+    .status-box ul li span::before{
+        font-family: "Line Awesome Free";
+        font-size: 46px;
+        font-weight: 600;
+        position: absolute;
+        left: -90px;
+        color: inherit;
+    }
+
+    //Icons
+    .status-box ul li:nth-child(1) span:before{
+        content: "\f46c";
+    }
+    .status-box ul li:nth-child(2) span:before{
+        content: "\f560";
+    }
+    .status-box ul li:nth-child(3) span::before{
+        content: "\f818"
+    }
+    .status-box ul li:nth-child(4) span::before{
+        content: "\f0d1";
+    }
+    .status-box ul li:nth-child(5) span::before{
+        content: "\f582";
+    }
+
+    //Line Styles
+    .status-box ul li {
+        position: relative;
+    }
+
+    .status-box ul li:before {
+        content: "";
+        position: absolute;
+    }
+
+    //lines
+    // .status-box ul li.step-{
+
+    // }
+
 }
