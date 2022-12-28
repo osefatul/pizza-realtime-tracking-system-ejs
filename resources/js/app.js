@@ -1,6 +1,7 @@
 import axios from "axios"
 import Noty from "noty";
 import { initAdmin } from "./admin";
+import { updateStatus } from "./updateStatus";
 
 
 
@@ -58,3 +59,10 @@ if(alertMsg){
 
 //call initAdmin
 initAdmin();
+
+let hiddenInput = document.querySelector('#hiddenInput')
+let order = hiddenInput? hiddenInput.value: null
+order = JSON.parse(order)
+
+//Updating order status
+updateStatus(order)
