@@ -67,7 +67,8 @@ var initAdmin = function initAdmin(socket) {
       text: 'New order!',
       progressBar: false
     }).show();
-    console.log(order);
+
+    // console.log(order)
     //Don't use .push because it will add in the end of an array.
     orders.unshift(order);
     orderTableBody.innerHTML = ''; //clear or delete table;

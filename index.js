@@ -12,6 +12,8 @@ const MongoDbStore = require('connect-mongo')(session)
 const passport = require('passport')
 const Emitter = require('events')
 
+
+
 //Mongo Configs
 mongoDB.set('strictQuery', true)
 mongoDB.connect(process.env.MONGO_URL).then(()=>{
@@ -113,6 +115,7 @@ eventEmitter.on('orderUpdated', (data) => {
 })
 
 
+//event for admin page to be updated with new orders in realtime
 eventEmitter.on('orderPlaced', (data) => {
     io.to('adminRoom').emit("orderPlaced", data)
 })
