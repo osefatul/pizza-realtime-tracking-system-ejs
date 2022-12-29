@@ -64,13 +64,20 @@ order = JSON.parse(order)
 //Updating order status
 updateStatus(order)
 
+
+
 //As we already imported our socket.io library in layout.ejs.lets call it here
 // Socket
 const socket = io();
 
-
-console.log("check socket",socket)
 // Join
 if(order) {
     socket.emit('join', `order_${order._id}`)
 }
+
+
+
+socket.on("orderUpdated", (data) => {
+    const updatedOrder = {...order};
+    
+})

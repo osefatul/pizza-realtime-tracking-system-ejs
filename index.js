@@ -10,7 +10,7 @@ const session = require("express-session")
 const flash = require("express-flash")
 const MongoDbStore = require('connect-mongo')(session)
 const passport = require('passport')
-
+const Emitter = require('events')
 
 //Mongo Configs
 mongoDB.set('strictQuery', true)
@@ -27,9 +27,12 @@ let mongoStore = new MongoDbStore({
     collection: 'sessions'
 })
 
+
 // Event emitter
-// const eventEmitter = new Emitter()
-// app.set('eventEmitter', eventEmitter)
+const eventEmitter = new Emitter()
+//emitter is bind in app, so we can access it anywhere, but in our case we will be using it in statusController to receiving events
+app.set('eventEmitter', eventEmitter)
+
 
 // Session config
 app.use(session({
@@ -95,9 +98,16 @@ const io = require("socket.io")(server)
 /// Socket
 io.on("connection", socket => {
     console.log("Socket connected => ", socket.id) //my socket.id
+
       // Join
     socket.on('join', (orderId) => {
         console.log(orderId)
     socket.join(orderId)
     })
+})
+
+
+//as the eventEmitter is emitted in statusController, we get it here as we listen to it.
+eventEmitter.on('orderUpdated', (data) => {
+    io.to(`order_${data.id}`).emit('orderUpdated', data)
 })
