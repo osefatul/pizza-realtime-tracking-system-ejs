@@ -41,11 +41,67 @@ body {
 }
 
 
+.rightSide_burger {
+    border: none !important;
+    outline: none !important;
+
+    &:hover{
+        color: $primary-hover;
+    }
+}
+
+
+.hiddenSidebar{
+    position: relative;
+
+    .toggleButton{
+        border: none !important;
+        outline: none !important;
+        transition: $dark;
+        background: none;
+        transition: $smooth;
+
+        &:hover{
+            font-size: 18px;
+            font-weight: bold;
+        }
+    }
+
+
+
+    ul li:last-child a{
+        background-color: $primary;
+        transition: $smooth;
+    
+        &:hover{
+            background: $primary-hover;
+        }
+    }
+    
+    ul li a {
+        transition: $smooth;
+        &:hover {
+            color: $primary;
+        }
+    }
+}
+
+
+//hidden sidebar
+.hideSidebar{
+    display: none;
+    transition: $smooth;
+}
+.showSidebar{
+    transition: $smooth;
+    display: flex;
+}
 
 
 
 nav li:last-child a{
     background-color: $primary;
+    transition: $smooth;
 
     &:hover{
         background: $primary-hover;
@@ -232,3 +288,31 @@ section.status {
         padding-right: 15px;
     }
 }
+
+
+
+@media(max-width:1060px) {
+    .container {
+        max-width: 90%;
+    }
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+
+@media(max-width: 768px) {
+    .status-box ul li span:before {
+        font-size: 34px;
+    }
+}
+
+
+@media(max-width: 642px) {
+    .rightSide{
+        display: none;
+    }
+}
+

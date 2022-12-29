@@ -270,8 +270,55 @@ body {
   width: 90%;
 }
 
+.rightSide_burger {
+  border: none !important;
+  outline: none !important;
+}
+.rightSide_burger:hover {
+  color: #b23301;
+}
+
+.hiddenSidebar {
+  position: relative;
+}
+.hiddenSidebar .toggleButton {
+  border: none !important;
+  outline: none !important;
+  transition: #232323;
+  background: none;
+  transition: all 0.3s ease-in-out;
+}
+.hiddenSidebar .toggleButton:hover {
+  font-size: 18px;
+  font-weight: bold;
+}
+.hiddenSidebar ul li:last-child a {
+  background-color: #fe5f1e;
+  transition: all 0.3s ease-in-out;
+}
+.hiddenSidebar ul li:last-child a:hover {
+  background: #b23301;
+}
+.hiddenSidebar ul li a {
+  transition: all 0.3s ease-in-out;
+}
+.hiddenSidebar ul li a:hover {
+  color: #fe5f1e;
+}
+
+.hideSidebar {
+  display: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.showSidebar {
+  transition: all 0.3s ease-in-out;
+  display: flex;
+}
+
 nav li:last-child a {
   background-color: #fe5f1e;
+  transition: all 0.3s ease-in-out;
 }
 nav li:last-child a:hover {
   background: #b23301;
@@ -425,4 +472,25 @@ section.status .status-box ul li {
 section.status .status-box ul li small {
   font-size: 12px;
   padding-right: 15px;
+}
+
+@media (max-width: 1060px) {
+  .container {
+    max-width: 90%;
+  }
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+@media (max-width: 768px) {
+  .status-box ul li span:before {
+    font-size: 34px;
+  }
+}
+@media (max-width: 642px) {
+  .rightSide {
+    display: none;
+  }
 }

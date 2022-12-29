@@ -7,8 +7,9 @@ import moment from "moment";
 // array of btns
 const addTOCarts = document.querySelectorAll(".add-to-cart") 
 const cartCounter = document.querySelector("#cartCounter");
-
-
+const rightSideBurger = document.querySelector(".rightSide_burger");
+const hiddenSidebar = document.querySelector(".hiddenSidebar");
+const toggleButton = document.querySelector(".toggleButton");
 
 const updateCart = async (pizza)=>{
     try{
@@ -53,6 +54,21 @@ if(alertMsg){
         alertMsg.remove();
     },2000)
 }
+
+
+
+rightSideBurger.onclick = ()=>{
+
+    hiddenSidebar.classList.remove("hideSidebar")
+    hiddenSidebar.classList.add("showSidebar")
+}
+
+toggleButton.onclick = ()=>{
+    hiddenSidebar.classList.remove("showSidebar")
+    hiddenSidebar.classList.add("hideSidebar")
+}
+
+
 
 
 let hiddenInput = document.querySelector('#hiddenInput')
