@@ -99,10 +99,10 @@ const io = require("socket.io")(server)
 io.on("connection", socket => {
     console.log("Socket connected => ", socket.id) //my socket.id
 
-      // Join
+      //Join room as a customer(roomId will be orderId)or admin(roomId will be adminRoom)
     socket.on('join', (orderId) => {
         console.log(orderId)
-    socket.join(orderId)
+        socket.join(orderId)
     })
 })
 
@@ -110,4 +110,9 @@ io.on("connection", socket => {
 //as the eventEmitter is emitted in statusController, we get it here as we listen to it.
 eventEmitter.on('orderUpdated', (data) => {
     io.to(`order_${data.id}`).emit('orderUpdated', data)
+})
+
+
+eventEmitter.on('orderPlaced', (data) => {
+    io.to('adminRoom').emit("orderPlaced", data)
 })

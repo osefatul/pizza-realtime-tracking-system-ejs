@@ -10,8 +10,6 @@ body {
 }
 
 
-
-
     /* Add non-firefox CSS code here */
 .navHeader{
     width: 100%;
@@ -19,14 +17,13 @@ body {
     backdrop-filter: blur(8px);
 }
 
-// As backfrop-filter is not supported in Firefox so
+// As backfrop-filter is not supported in Firefox so:
 @-moz-document url-prefix() {
     .navHeader{
         width: 100%;
-        background: rgb(222, 224, 222);
-        opacity: 90%;
+        background: white;
+        opacity: 80%;
     }
-    
 }
 
 .navHeader{

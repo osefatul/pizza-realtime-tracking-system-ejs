@@ -8,7 +8,7 @@ export const updateStatus = (order)=>{
 
     console.log(order)
 
-    //First loop through all order and remove below classes.
+    //First loop through all order and remove previous status
     statuses.forEach((status)=>{
         status.classList.remove('step-completed')
         status.classList.remove('current')

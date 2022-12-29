@@ -255,8 +255,8 @@ body {
 @-moz-document url-prefix() {
   .navHeader {
     width: 100%;
-    background: rgb(222, 224, 222);
-    opacity: 90%;
+    background: white;
+    opacity: 80%;
   }
 }
 .navHeader {
