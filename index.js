@@ -6,12 +6,10 @@ const expressJsLayout = require('express-ejs-layouts');
 const path = require('path');
 const mongoDB = require("mongoose")
 const apiRoutes = require("./routes/api")
-
 const session = require("express-session")
 const flash = require("express-flash")
 const MongoDbStore = require('connect-mongo')(session)
 const passport = require('passport')
-
 
 
 //Mongo Configs
@@ -54,7 +52,6 @@ app.use(passport.session());
 //Otherwise we will get
 //"Refused to execute script from 'http://localhost:5000/js/app.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled." error.
 app.use(express.static('public'))
-
 //when body is receiving data..
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
@@ -86,7 +83,27 @@ routes(app)
 
 
 PORT = process.env.PORT || 5000;
-
-app.listen(PORT, ()=>{
+const server= app.listen(PORT, ()=>{
     console.log('listening on port', PORT)
+})
+
+
+
+const { Server } = require("socket.io");
+
+const options = {
+    cors: true,
+    origin: ['http://localhost:5000']
+}
+
+//SETTING WEB_SOCKET SERVER
+const io = new Server(server, options);
+/// Socket
+io.on("connection", socket => {
+    console.log("Socket connected => ", socket.id) //my socket.id
+      // Join
+    socket.on('join', (orderId) => {
+        console.log(orderId)
+    socket.join(orderId)
+    })
 })

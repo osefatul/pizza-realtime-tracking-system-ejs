@@ -3,8 +3,7 @@ import Noty from "noty";
 import { initAdmin } from "./admin";
 import { updateStatus } from "./updateStatus";
 
-
-
+// import io from 'socket.io-client';
 
 // array of btns
 const addTOCarts = document.querySelectorAll(".add-to-cart") 
@@ -32,7 +31,6 @@ const updateCart = async (pizza)=>{
             progressBar: false,
         }).show();
     }
-
 }
 
 
@@ -66,3 +64,13 @@ order = JSON.parse(order)
 
 //Updating order status
 updateStatus(order)
+
+//As we already imported our socket.io library in layout.ejs.lets call it here
+// Socket
+global.io = io();
+const socket = io();
+console.log("check socket",socket)
+// Join
+if(order) {
+    socket.emit('join', `order_${order._id}`)
+}
