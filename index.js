@@ -89,15 +89,9 @@ const server= app.listen(PORT, ()=>{
 
 
 
-const { Server } = require("socket.io");
-
-const options = {
-    cors: true,
-    origin: ['http://localhost:5000']
-}
-
 //SETTING WEB_SOCKET SERVER
-const io = new Server(server, options);
+const io = require("socket.io")(server)
+
 /// Socket
 io.on("connection", socket => {
     console.log("Socket connected => ", socket.id) //my socket.id
