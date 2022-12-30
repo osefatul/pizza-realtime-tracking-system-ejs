@@ -33,7 +33,6 @@ body {
 }
 
 
-
 .vanillaContainer{
     // sometimes the css container doesn't work properly
     max-width: 1592px;
@@ -41,33 +40,33 @@ body {
 }
 
 
-.rightSide_burger {
-    border: none !important;
-    outline: none !important;
-
-    &:hover{
-        color: $primary-hover;
-    }
-}
 
 
-.hiddenSidebar{
+
+//Sidebar CSS 
+.sidebar{
     position: relative;
+    
+    ul {
+        transition: all 0.5s ease-in-out;
+        // This means that the beginning location is 100% right to its actual location on x-axis
+        transform: translate(100%);
+    }
 
-    .toggleButton{
+
+    .closeButton{
         border: none !important;
         outline: none !important;
         transition: $dark;
         background: none;
         transition: $smooth;
+        font-weight: bold;
 
         &:hover{
             font-size: 18px;
-            font-weight: bold;
+            transform: rotate(360deg);
         }
     }
-
-
 
     ul li:last-child a{
         background-color: $primary;
@@ -87,17 +86,28 @@ body {
 }
 
 
-//hidden sidebar
-.hideSidebar{
-    display: none;
-    transition: $smooth;
+.toggleButton {
+    border: none !important;
+    outline: none !important;
+
+    &:hover{
+        color: $primary-hover;
+        
+    }
 }
+
 .showSidebar{
     transition: $smooth;
-    display: flex;
+    display: flex;    
+    ul {
+        //this will bring the it back to its original location on x-axis
+        transform: translate(0%)
+    }
 }
 
 
+
+// ----------------------------------------------------
 
 nav li:last-child a{
     background-color: $primary;
@@ -310,8 +320,8 @@ section.status {
 }
 
 
-@media(max-width: 642px) {
-    .rightSide{
+@media(min-width: 642px) {
+    .sidebar{
         display: none;
     }
 }

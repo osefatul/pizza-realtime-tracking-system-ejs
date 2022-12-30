@@ -24,7 +24,7 @@
             
             <div class="hidden sm:flex">
                 <ul class="flex items-center space-x-4">
-                    <% if(user.role === 'admin') {%>
+                    <% if(user?.role === 'admin') {%>
                     <li><a href="/admin/orders">Orders</a></li>
                     <% } else {%>
                     <li><a href="/customer/orders">Orders</a></li>
@@ -51,20 +51,20 @@
                 </ul>
             </div>
 
-            <div class="rightSide_burger flex sm:hidden cursor-pointer">
+            <div class="toggleButton flex sm:hidden cursor-pointer">
                     <i class="las la-bars  text-xl"></i>
             </div>
         </nav>
     </div>
 
-    <div class="hiddenSidebar">
-        <button class="toggleButton fixed z-50 top-3 right-3 text-red-800">
-            X
-        </button>
-
+    <div class="sidebar">
         <ul class="fixed w-[30%] z-40 top-0 right-0 bg-yellow-500 flex flex-col h-full items-center justify-start pt-12 space-y-6 text-left mx-auto ">
 
-            <% if(user.role === 'admin') {%>
+            <button class="closeButton fixed z-50 top-3 right-3 text-black">
+                X
+            </button>
+
+            <% if(user?.role === 'admin') {%>
             <li><a href="/admin/orders">Orders</a></li>
             <% } else {%>
             <li><a href="/customer/orders">Orders</a></li>

@@ -111,9 +111,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 // array of btns
 var addTOCarts = document.querySelectorAll(".add-to-cart");
 var cartCounter = document.querySelector("#cartCounter");
-var rightSideBurger = document.querySelector(".rightSide_burger");
-var hiddenSidebar = document.querySelector(".hiddenSidebar");
+
+//sidebar functionalities -----
 var toggleButton = document.querySelector(".toggleButton");
+var sidebar = document.querySelector(".sidebar");
+var closeButton = document.querySelector(".closeButton");
+toggleButton.onclick = function () {
+  sidebar.classList.add("showSidebar");
+};
+closeButton.onclick = function () {
+  sidebar.classList.remove("showSidebar");
+};
+
+// --End Sidebar functionalities -----
+
 var updateCart = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(pizza) {
     var res;
@@ -173,14 +184,6 @@ if (alertMsg) {
     alertMsg.remove();
   }, 2000);
 }
-rightSideBurger.onclick = function () {
-  hiddenSidebar.classList.remove("hideSidebar");
-  hiddenSidebar.classList.add("showSidebar");
-};
-toggleButton.onclick = function () {
-  hiddenSidebar.classList.remove("showSidebar");
-  hiddenSidebar.classList.add("hideSidebar");
-};
 var hiddenInput = document.querySelector('#hiddenInput');
 var order = hiddenInput ? hiddenInput.value : null;
 order = JSON.parse(order);
