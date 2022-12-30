@@ -242,7 +242,8 @@
 body {
   font-family: "Lato", sans-serif;
   -webkit-font-smoothing: antialiased;
-  color: #232323;
+  color: white;
+  background: #303030;
 }
 
 /* Add non-firefox CSS code here */
@@ -250,24 +251,43 @@ body {
   width: 100%;
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
+  background: #303030;
 }
 
 @-moz-document url-prefix() {
   .navHeader {
     width: 100%;
-    background: white;
+    background: #303030;
     opacity: 80%;
   }
 }
-.navHeader {
-  width: 100%;
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-}
-
 .vanillaContainer {
   max-width: 1592px;
-  width: 90%;
+  width: 100%;
+  padding: 0 6rem;
+  background: #303030;
+}
+
+.navHeader nav li {
+  list-style-type: none;
+}
+
+.navHeader nav li:last-child a {
+  background-color: #fe5f1e;
+  transition: all 0.3s ease-in-out;
+}
+.navHeader nav li:last-child a:hover {
+  background: #b23301;
+}
+
+.navHeader nav li a {
+  transition: all 0.3s ease-in-out;
+  color: white;
+  text-decoration: none;
+}
+.navHeader nav li a:hover {
+  color: #fe5f1e;
+  text-decoration: none;
 }
 
 .sidebar {
@@ -280,7 +300,6 @@ body {
 .sidebar .closeButton {
   border: none !important;
   outline: none !important;
-  transition: #232323;
   background: none;
   transition: all 0.3s ease-in-out;
   font-weight: bold;
@@ -298,9 +317,12 @@ body {
 }
 .sidebar ul li a {
   transition: all 0.3s ease-in-out;
+  color: #232323;
+  text-decoration: none;
 }
 .sidebar ul li a:hover {
   color: #fe5f1e;
+  text-decoration: none;
 }
 
 .toggleButton {
@@ -319,27 +341,8 @@ body {
   transform: translate(0%);
 }
 
-nav li:last-child a {
-  background-color: #fe5f1e;
-  transition: all 0.3s ease-in-out;
-}
-nav li:last-child a:hover {
-  background: #b23301;
-}
-
-nav li a {
-  transition: all 0.3s ease-in-out;
-}
-nav li a:hover {
-  color: #fe5f1e;
-}
-
-section.hero {
-  background: #f8f8f8;
-}
-
 .size {
-  background: #f8f8f8;
+  background: #232323;
 }
 
 .add-to-cart {
@@ -364,8 +367,16 @@ section.hero {
   background: #b23301 !important;
 }
 
+.orders {
+  min-height: 100vh;
+}
+
+.status {
+  min-height: calc(100vh - 80px);
+}
+
 section.cart {
-  background: #f8f8f8;
+  background: #303030;
 }
 section.cart .amount {
   color: #fe5f1e;
@@ -373,7 +384,7 @@ section.cart .amount {
 
 section.login {
   background: #f8f8f8;
-  min-height: calc(100vh - 86px);
+  min-height: calc(100vh - 80px);
 }
 section.login a {
   color: #fe5f1e;
@@ -392,11 +403,10 @@ a.link {
 }
 
 section.status {
-  background: #f8f8f8;
-  min-height: calc(100vh - 86px);
+  min-height: calc(100vh - 80px);
 }
 section.status .status-box {
-  padding: 60px 0;
+  padding: 20px 0;
 }
 section.status .status-box ul {
   margin-left: 84px;
@@ -415,7 +425,7 @@ section.status .status-box ul li span::after {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  box-shadow: 0 0 1px 10px #f8f8f8;
+  box-shadow: 0 0 1px 10px #232323;
 }
 section.status .status-box ul li span::before {
   font-family: "Line Awesome Free";
@@ -453,13 +463,13 @@ section.status .status-box ul li:before {
   background: #232323;
 }
 section.status .status-box ul li.step-completed:before {
-  background: #ccc;
+  background: green;
 }
 section.status .status-box ul li.step-completed span:after {
-  background: #ccc;
+  background: green;
 }
 section.status .status-box ul li.step-completed span {
-  color: #ccc;
+  color: green;
 }
 section.status .status-box ul li.current span {
   color: #fe5f1e;
@@ -478,8 +488,8 @@ section.status .status-box ul li small {
 }
 
 @media (max-width: 1060px) {
-  .container {
-    max-width: 90%;
+  .vanillaContainer {
+    max-width: 100%;
   }
   table {
     display: block;

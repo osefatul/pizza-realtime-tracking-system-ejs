@@ -6,8 +6,7 @@
 body {
     font-family: 'Lato', sans-serif;
     -webkit-font-smoothing: antialiased;
-    color: white;
-    background: #303030;
+    color: $dark;
 }
 
 
@@ -16,51 +15,57 @@ body {
     width: 100%;
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
-    background: #303030;
 }
 
 // As backfrop-filter is not supported in Firefox so:
 @-moz-document url-prefix() {
     .navHeader{
         width: 100%;
-        background: #303030;
+        background: white;
         opacity: 80%;
     }
+}
+
+
+.navHeader{
+    width: 100%;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
 }
 
 
 .vanillaContainer{
     // sometimes the css container doesn't work properly
     max-width: 1592px;
-    width: 100%;
-    padding: 0 6rem;
-    background: #303030;
+    width: 90%;
 }
+
 
 
 .navHeader nav li {
     list-style-type: none;
 }
 
-.navHeader nav li:last-child a{
+nav li:last-child a{
     background-color: $primary;
     transition: $smooth;
+    text-decoration: none;
 
     &:hover{
         background: $primary-hover;
+        text-decoration: none;
     }
 }
 
 
-.navHeader nav li a {
+nav li a {
     transition: $smooth;
-    color: white;
-    text-decoration: none;
     &:hover {
         color: $primary;
         text-decoration: none;
     }
 }
+
 
 
 //Sidebar CSS 
@@ -77,6 +82,7 @@ body {
     .closeButton{
         border: none !important;
         outline: none !important;
+        transition: $dark;
         background: none;
         transition: $smooth;
         font-weight: bold;
@@ -90,22 +96,22 @@ body {
     ul li:last-child a{
         background-color: $primary;
         transition: $smooth;
-    
+        text-decoration: none;
         &:hover{
             background: $primary-hover;
+            text-decoration: none;
         }
     }
     
     ul li a {
         transition: $smooth;
-        color: $dark;
-        text-decoration: none;
         &:hover {
             color: $primary;
             text-decoration: none;
         }
     }
 }
+
 
 .toggleButton {
     border: none !important;
@@ -121,21 +127,21 @@ body {
     transition: $smooth;
     display: flex;    
     ul {
-    //this will bring the it back to its original location on x-axis
+        //this will bring the it back to its original location on x-axis
         transform: translate(0%)
     }
 }
 
-// ------------------------------------------------
+
+// ----------------------------------------------------
 
 
 
 section.hero {
-    // background: $secondary;
+    background: $secondary;
 }
-
 .size {
-    background: $dark;
+    background: $secondary;
 }
 
 
@@ -162,22 +168,8 @@ section.hero {
 }
 
 
-
-
-// -------------------
-.orders {
-    min-height: 100vh;
-}
-
-
-
-.status{
-    min-height: calc(100vh - 80px);
-}
-
-
 section.cart {
-    background: #303030;
+    background: $secondary;
     .amount {
         color: $primary;
     }
@@ -185,7 +177,7 @@ section.cart {
 
 section.login {
     background: $secondary;
-    min-height: calc(100vh - 80px);
+    min-height: calc(100vh - 86px);
     a {
         color: $primary;
         &:hover {
@@ -207,11 +199,11 @@ a.link {
 
 
 section.status {
-
-    min-height: calc(100vh - 80px);
+    background: $secondary;
+    min-height: calc(100vh - 86px);
 
     .status-box{
-        padding: 20px 0;
+        padding: 60px 0;
     }
 
     .status-box ul{
@@ -236,7 +228,7 @@ section.status {
         width: 10px;
         height: 10px;
         border-radius: 50%;
-        box-shadow: 0 0 1px 10px $dark;
+        box-shadow: 0 0 1px 10px $secondary;
     }
 
     //Icons styles
@@ -283,17 +275,17 @@ section.status {
 
     // line: all the before lines which have step-completed
     .status-box ul li.step-completed:before {
-        background: green;
+        background: $gray;
     }
 
     // dots
     .status-box ul li.step-completed span:after {
-        background: green;
+        background: $gray;
     }
 
     // text
     .status-box ul li.step-completed span {
-        color: green;
+        color: $gray;
     }
 
     // Current status
@@ -320,8 +312,8 @@ section.status {
 
 
 @media(max-width:1060px) {
-    .vanillaContainer {
-        max-width: 100%;
+    .container {
+        max-width: 90%;
     }
     table {
         display: block;
@@ -343,4 +335,3 @@ section.status {
         display: none;
     }
 }
-

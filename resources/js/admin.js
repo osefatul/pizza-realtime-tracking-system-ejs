@@ -51,8 +51,8 @@ export const initAdmin = (socket) =>{
     const generateMarkup = (orders) =>{
         return orders.map((order) => {
             return `
-                <tr>
-                <td class="border px-4 py-2 text-green-900">
+                <tr class="">
+                <td class="border px-4 py-2 text-[#fe5f1e]">
                     <p>${ order._id }</p>
                     <div>${ renderItems(order.items) }</div>
                 </td>
@@ -63,26 +63,30 @@ export const initAdmin = (socket) =>{
                         <form action="/admin/order/status" method="POST">
                             <input type="hidden" name="orderId" value="${order._id}">
                             <select name="status" onchange="this.form.submit()"
-                                class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                                class="block appearance-none w-full bg-[#303030] border border-gray-400 hover:bg-[#303030] hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
 
-                                <option value="order_placed"
+                                <option 
+                                class="bg-[#303030] hover:bg-[#303030]" value="order_placed"
                                     ${ order.status === 'order_placed' ? 'selected' : '' }>
                                     Placed</option>
-                                <option value="confirmed" 
+                                <option 
+                                class=" bg-[#303030] hover:bg-[#303030]" value="confirmed" 
                                     ${ order.status === 'confirmed' ? 'selected' : '' }>
                                     Confirmed</option>
-                                <option value="prepared" 
+                                <option class=" bg-[#303030] hover:bg-[#303030]" 
+                                value="prepared" 
                                     ${ order.status === 'prepared' ? 'selected' : '' }>
                                     Prepared</option>
-                                <option value="delivered" 
+                                <option class=" bg-[#303030] hover:bg-[#303030]"
+                                value="delivered" 
                                     ${ order.status === 'delivered' ? 'selected' : '' }>
                                     Delivered
                                 </option>
-                                <option value="completed" 
+                                <option class=" bg-[#303030] hover:bg-[#303030]" 
+                                value="completed" 
                                     ${ order.status === 'completed' ? 'selected' : '' }>
                                     Completed
                                 </option>
-
                             </select>
                         </form>
                         <div
