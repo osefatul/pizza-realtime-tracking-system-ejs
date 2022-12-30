@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://assets.ubuntu.com/v1/vanilla-framework-version-3.9.0.min.css" />
 
 </head>
+
+
 <body>
     <div class="navHeader flex py-4 sticky z-20 top-0">
         <nav class="vanillaContainer mx-auto flex items-center justify-between">
@@ -59,7 +61,7 @@
     </div>
 
     <div class="sidebar">
-        <ul class="fixed w-[30%] z-40 top-0 right-0 bg-yellow-500 flex flex-col h-full items-center justify-start pt-12 space-y-6 text-left mx-auto ">
+        <ul class="fixed w-[34%] z-40 top-0 right-0 bg-yellow-500 flex flex-col h-full items-center justify-start pt-12 space-y-6 text-left mx-auto ">
 
             <button class="closeButton fixed z-50 top-3 right-3 text-black">
                 X
@@ -81,10 +83,10 @@
             <li><a href="/register">Register</a></li>
             <li><a href="/login">Login</a></li>
             <% }%>
-            <li class=""><a href="/cart" class="inline-block px-4 py-2 rounded-full flex items-center">
+            <li class=""><a href="/cart" class="inline-block px-2 py-1 rounded-full flex items-center">
                 <span 
                 id="cartCounter"
-                class="text-white font-bold pr-2">
+                class="text-sm text-white font-bold pr-2">
                 <%= session.cart ? session.cart.totalQty : '' %>
                 </span>
                 <img src="/img/cart.png" alt="">

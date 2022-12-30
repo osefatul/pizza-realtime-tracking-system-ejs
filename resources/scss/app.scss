@@ -90,7 +90,7 @@ body {
     ul li:last-child a{
         background-color: $primary;
         transition: $smooth;
-    
+        width: 4rem;
         &:hover{
             background: $primary-hover;
         }
@@ -130,9 +130,6 @@ body {
 
 
 
-section.hero {
-    // background: $secondary;
-}
 
 .size {
     background: $dark;
@@ -177,6 +174,7 @@ section.hero {
 
 
 section.cart {
+
     background: #303030;
     .amount {
         color: $primary;
@@ -307,8 +305,9 @@ section.status {
 
     .status-box ul li {
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
+
     }
 
     .status-box ul li small{
@@ -321,8 +320,9 @@ section.status {
 
 @media(max-width:1060px) {
     .vanillaContainer {
-        max-width: 100%;
+        padding: 0 4rem;
     }
+
     table {
         display: block;
         overflow-x: auto;
@@ -333,9 +333,39 @@ section.status {
 
 @media(max-width: 768px) {
     .status-box ul li span:before {
-        font-size: 34px;
+        font-size: 30px;
+    }
+
+    .vanillaContainer {
+        max-width: 100%;
+        padding: 0 3rem;
+    }
+
+    .pizza-list{
+        display: block !important;
+        overflow-x: auto;
     }
 }
+
+
+@media(max-width: 642px) {
+
+    .status-box {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .status-box ul li {
+        gap: 25px;
+    }
+
+
+    .vanillaContainer {
+        max-width: 100%;
+        padding: 0 4rem;
+    }
+}
+
 
 
 @media(min-width: 642px) {
