@@ -346,6 +346,14 @@ body {
   transform: translate(0%);
 }
 
+.hero .vanillaContainer a {
+  color: white;
+  text-decoration: none;
+}
+.hero .vanillaContainer a:hover {
+  color: #b23301;
+}
+
 .size {
   background: #232323;
 }

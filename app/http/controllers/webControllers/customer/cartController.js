@@ -14,7 +14,6 @@ const cartController = ()=>{
         },
 
         updateCart (req, res) {
-
             //first of all check if there is no cart in the session then create one.
             if(!req.session.cart){
                 req.session.cart = {

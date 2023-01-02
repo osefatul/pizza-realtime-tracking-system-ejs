@@ -117,7 +117,6 @@ body {
 
     &:hover{
         color: $primary-hover;
-        
     }
 }
 
@@ -133,6 +132,14 @@ body {
 // ------------------------------------------------
 
 
+
+.hero .vanillaContainer a{
+    color: white;
+    text-decoration: none;
+    &:hover{
+        color: $primary-hover;
+    }
+}
 
 
 .size {
