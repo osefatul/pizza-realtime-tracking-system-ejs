@@ -91,7 +91,8 @@ const cartController = ()=>{
 
 
         removeCart (req, res){
-            let cart = req.session.cart;totalPrice: req.session.cart.totalPrice,
+            let cart = req.session.cart;
+
             req.session.cart.items.map((cartItem) => {
                 if(cartItem._id === req.body._id){
                     const nextCartItem = cart.items.filter((item) => item._id !== cartItem._id);
