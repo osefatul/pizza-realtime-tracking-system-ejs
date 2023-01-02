@@ -17,7 +17,6 @@ const deleteItem = async (pizza)=>{
             text: 'Item deleted from cart',
             progressBar: false,
         }).show();
-
         return res.data;
         
     }catch(err){
@@ -34,21 +33,27 @@ const deleteItem = async (pizza)=>{
 
 
 
-
-
-export const deleteCart = () =>{
+export const removeItemFromCart = () =>{
     const deleteBtn = document.querySelectorAll(".deleteBtn");
+    const totalPrice = document.querySelector(".totalPrice");
 
     //Delete Cart item
     deleteBtn.forEach(btn =>{
-        btn.addEventListener("click", (e) =>{
+        btn.addEventListener("click", async (e) =>{
             
             const pizza = JSON.parse(btn.dataset.pizza)
-            // console.log(pizza)
-            var buttonClicked = e.target;
+
+            //remove the item from session as well computed in the backend
+            const res = await deleteItem(pizza) 
+            console.log(res)
+
+            // var buttonClicked = e.target;
             // buttonClicked.parentElement.remove(); //both are same
-            btn.parentElement.remove();
-            deleteItem(pizza)
+            btn.parentElement.remove(); // remove the div from the DOM
+
+            //update totalPrice as well
+            totalPrice.innerText = "";
+            totalPrice.innerText = `$ ${res.totalPrice}`
         })
     })
 

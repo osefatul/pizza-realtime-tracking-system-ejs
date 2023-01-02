@@ -4,13 +4,16 @@ import { initAdmin } from "./admin";
 import { updateStatus } from "./updateStatus";
 import moment from "moment";
 import cart from "./cart";
-import { deleteCart } from "./deleteCart";
+import { removeItemFromCart } from "./removeItemFromCart";
+import { decrementProduct } from "./decrementProduct";
 
 
 
 // array of btns
 const addTOCarts = document.querySelectorAll(".add-to-cart") 
 const cartCounter = document.querySelector("#cartCounter");
+
+
 
 
 
@@ -67,7 +70,7 @@ const updateCart = async (pizza)=>{
 
 
 
-//Add cart buttons
+//Add cart buttons in HOME page
 addTOCarts.forEach((btn)=>{
     btn.addEventListener("click", (e)=>{
         // console.log(e)
@@ -80,77 +83,73 @@ addTOCarts.forEach((btn)=>{
 })
 
 
-
-
-deleteCart()
+removeItemFromCart()
 
 // cart()
 
+
+
+
+
+
+const incrementProduct = async (pizza)=>{
+    try{
+        const res = await axios.post("/increment-cart", pizza);
+        // console.log(res.data)
+        cartCounter.innerText = res.data.totalQty
+
+        //we return the value so we can use it for cart items on cart page.
+        
+        new Noty({
+            type: 'success',
+            timeout: 1000,
+            text: 'Item added to cart',
+            progressBar: false,
+        }).show();
+
+        return res.data;
+        
+    }catch(err){
+        console.log(err)
+        new Noty({
+            type: 'error',
+            timeout: 1000,
+            text: 'Something went wrong',
+            progressBar: false,
+        }).show();
+    }
+}
+
+
+
+
+decrementProduct()
+
+
 // add pizza on cart page
 const addPizza = document.querySelectorAll(".add-pizza");
-const pizzaCounts = document.querySelectorAll(".pizzaCounts")
-const pizzaDiv = document.querySelector(".pizza-div");
-const pizzaList = document.querySelector(".pizza-list");
+const totalPrice = document.querySelector(".totalPrice");
 
 addPizza.forEach((btn)=>{
     btn.addEventListener("click", async (e)=>{
         const pizza = JSON.parse(btn.dataset.pizza)
         // console.log(pizza.item)
-        console.log(btn.parentElement)
-
-        const res =  await updateCart(pizza.item);
-        // console.log(res.items)
-
-        pizzaList.innerHTML = "";
-
-        Object.values(res.items).map((pizza)=>{
-            pizzaList.innerHTML += `
-            <div class="flex justify-between items-center py-8 w-full space-x-14 pizza-div">
-                <div class="flex items-center w-2/5 mr-12 sm:mr-0">
-                    <img class="h-12 sm:h-24" src="/img/${pizza.item.image}" alt="">
-
-                    <div class="text-[12px] sm:text-md text-left ml-2 sm:ml-4">
-                        <h1 class="font-bold">${pizza.item.name}</h1>
-                        <span class="text-gray text-gray-400">
-                            ${pizza.item.size}
-                        </span>
-                    </div>
-                </div>
-
-                <div class="flex items-end justify-center space-x-2 w-1/5 ml-2">
-                    <span data-pizza="<%= JSON.stringify(pizza) %>" class="cursor-pointer font-bold text-lg ">
-                    <i class="las la-minus-circle text-red-500 hover:text-red-400"></i>
-                    </span>
-
-                    <p class="space-x-1 pb-1 flex items-center" >
-                        <span
-                        data-id=${JSON.stringify(pizza.item._id)} 
-                        class="pizzaCounts">
-                            ${pizza.qty}
-                        </span>
-                        <span>Pcs</span>
-                    </p>
-                    <span 
-                    data-pizza="<%= JSON.stringify(pizza) %>"  
-                    class="cursor-pointer font-bold text-lg add-pizza">
-                        <i class="las la-plus text-green-500 hover:text-green-400"></i>
-                    </span>
-                </div>
-
-                <p class="flex items-center font-bold w-1/5">
-                    $<span>${pizza.item.price * pizza.qty}</span>
-                </p>
-
-                <button class="deleteBtn px-1 rounded-md">
-                    delete
-                </button>
-            </div>
-            `
-        }).join("")
-
-        // console.log(pizzaList.innerHTML)
-
+        const res =  await incrementProduct(pizza);
+        // console.log(res)
         
+        //update the amount of products..
+        btn.parentElement.children[1].children[0].innerText= "";
+        btn.parentElement.children[1].children[0].innerText = res.itemQty;
+        
+
+        //update the price of the products
+        btn.parentElement.nextElementSibling.children[0].innerText= "";
+        btn.parentElement.nextElementSibling.children[0].innerText = res.itemQty * +res.item.price
+
+        //update totalPrice as well
+        totalPrice.innerText = "";
+        totalPrice.innerText = `$ ${res.totalPrice}`
+
     })
 })
 

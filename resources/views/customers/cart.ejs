@@ -23,7 +23,9 @@
                 </div>
 
                 <div class="flex items-end justify-center space-x-2 w-1/5 ml-2">
-                    <span data-pizza="<%= JSON.stringify(pizza) %>" class="cursor-pointer font-bold text-lg ">
+                    <span 
+                    data-pizza="<%= JSON.stringify(pizza) %>" 
+                    class="cursor-pointer font-bold text-lg subtract-pizza">
                         <i class="las la-minus-circle text-red-500 hover:text-red-400"></i>
                     </span>
 
@@ -37,7 +39,8 @@
                     </p>
 
                     <span 
-                    data-pizza="<%= JSON.stringify(pizza) %>" class="cursor-pointer font-bold text-lg add-pizza">
+                    data-pizza="<%= JSON.stringify(pizza) %>" 
+                    class="cursor-pointer font-bold text-lg add-pizza">
                         <i class="las la-plus text-green-500 hover:text-green-400"></i>
                     </span>
                 </div>
@@ -59,7 +62,9 @@
         <div class="text-right py-4 overflow-x-auto">
             <div>
                 <span class="text-sm sm:text-lg font-bold">Total Amount:</span>
-                <span class="amount text-sm sm:text-2xl font-bold ml-2">$ <%= session.cart.totalPrice %></span>
+                <span class="amount text-sm sm:text-2xl font-bold ml-2 totalPrice">
+                    $ <%= session.cart.totalPrice %>
+                </span>
             </div>
 
             <% if(user) { %>
