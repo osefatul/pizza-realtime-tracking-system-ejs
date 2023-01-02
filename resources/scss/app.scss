@@ -141,6 +141,14 @@ body {
     }
 }
 
+.order .Logintocontinue{
+    color: white;
+    text-decoration: none;
+    &:hover{
+        color: $primary-hover;
+    }
+}
+
 
 .size {
     background: $dark;

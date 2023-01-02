@@ -354,6 +354,14 @@ body {
   color: #b23301;
 }
 
+.order .Logintocontinue {
+  color: white;
+  text-decoration: none;
+}
+.order .Logintocontinue:hover {
+  color: #b23301;
+}
+
 .size {
   background: #232323;
 }
