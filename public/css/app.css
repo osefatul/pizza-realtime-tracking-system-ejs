@@ -239,6 +239,10 @@
   color: #fff;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Lato", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -377,14 +381,21 @@ body {
 }
 
 section.cart {
+  min-height: calc(100vh - 80px);
   background: #303030;
 }
 section.cart .amount {
   color: #fe5f1e;
 }
+section.cart .deleteBtn {
+  background: #fe5f1e;
+}
+section.cart .deleteBtn:hover {
+  background: #b23301 !important;
+}
 
 section.login {
-  background: #f8f8f8;
+  background: #303030;
   min-height: calc(100vh - 80px);
 }
 section.login a {

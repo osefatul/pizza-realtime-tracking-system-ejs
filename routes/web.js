@@ -32,6 +32,7 @@ const initRoute = (app)=>{
 
     app.get("/cart", cartController().cart)
     app.post("/update-cart", cartController().updateCart)
+    app.post("/remove-cart", cartController().removeCart)
 
     //customer routes
     app.post("/orders", auth, orderController().store)

@@ -6,7 +6,7 @@ export const updateStatus = (order)=>{
     let statuses = document.querySelectorAll('.status_line')
     let time = document.createElement("small")
 
-    console.log(order)
+    // console.log(order)
 
     //First loop through all order and remove previous status
     statuses.forEach((status)=>{

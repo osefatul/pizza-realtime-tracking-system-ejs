@@ -3,6 +3,10 @@
 @import '~noty/src/themes/mint.scss';
 
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Lato', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -174,15 +178,23 @@ body {
 
 
 section.cart {
-
+    min-height: calc(100vh - 80px);
     background: #303030;
     .amount {
         color: $primary;
     }
+
+    .deleteBtn{
+        background: $primary;
+
+        &:hover {
+            background: $primary-hover !important;
+        }
+    }
 }
 
 section.login {
-    background: $secondary;
+    background: #303030;
     min-height: calc(100vh - 80px);
     a {
         color: $primary;
