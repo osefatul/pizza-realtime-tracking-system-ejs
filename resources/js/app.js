@@ -4,6 +4,7 @@ import { initAdmin } from "./admin";
 import { updateStatus } from "./updateStatus";
 import moment from "moment";
 import cart from "./cart";
+import { deleteCart } from "./deleteCart";
 
 
 
@@ -34,7 +35,7 @@ closeButton.onclick = ()=>{
 const updateCart = async (pizza)=>{
     try{
         const res = await axios.post("/update-cart", pizza);
-        console.log(res.data)
+        // console.log(res.data)
         cartCounter.innerText = res.data.totalQty
 
         //we return the value so we can use it for cart items on cart page.
@@ -62,35 +63,7 @@ const updateCart = async (pizza)=>{
 
 
 
-const deleteItem = async (pizza)=>{
-    try{
-        const res = await axios.post("/remove-cart", pizza);
 
-        console.log(res.data);
-
-        cartCounter.innerText = res.data.totalQty
-
-        //we return the value so we can use it for cart items on cart page.
-        
-        new Noty({
-            type: 'success',
-            timeout: 1000,
-            text: 'Item deleted from cart',
-            progressBar: false,
-        }).show();
-
-        return res.data;
-        
-    }catch(err){
-        console.log(err)
-        new Noty({
-            type: 'error',
-            timeout: 1000,
-            text: 'Something went wrong',
-            progressBar: false,
-        }).show();
-    }
-}
 
 
 
@@ -99,36 +72,31 @@ addTOCarts.forEach((btn)=>{
     btn.addEventListener("click", (e)=>{
         // console.log(e)
         const pizza = JSON.parse(btn.dataset.pizza)
-        console.log(pizza)
+        console.log(btn.parentElement.parentElement)
         updateCart(pizza);
+
+
     })
 })
 
+
+
+
+deleteCart()
+
+// cart()
 
 // add pizza on cart page
 const addPizza = document.querySelectorAll(".add-pizza");
 const pizzaCounts = document.querySelectorAll(".pizzaCounts")
 const pizzaDiv = document.querySelector(".pizza-div");
 const pizzaList = document.querySelector(".pizza-list");
-const deleteBtn = document.querySelectorAll(".deleteBtn");
-
-deleteBtn.forEach(btn =>{
-    btn.addEventListener("click", () =>{
-        
-        const pizza = JSON.parse(btn.dataset.pizza)
-        console.log(pizza)
-        deleteItem(pizza)
-    })
-})
-
-// cart()
-
 
 addPizza.forEach((btn)=>{
     btn.addEventListener("click", async (e)=>{
         const pizza = JSON.parse(btn.dataset.pizza)
         // console.log(pizza.item)
-        console.log()
+        console.log(btn.parentElement)
 
         const res =  await updateCart(pizza.item);
         // console.log(res.items)
@@ -136,7 +104,6 @@ addPizza.forEach((btn)=>{
         pizzaList.innerHTML = "";
 
         Object.values(res.items).map((pizza)=>{
-
             pizzaList.innerHTML += `
             <div class="flex justify-between items-center py-8 w-full space-x-14 pizza-div">
                 <div class="flex items-center w-2/5 mr-12 sm:mr-0">
