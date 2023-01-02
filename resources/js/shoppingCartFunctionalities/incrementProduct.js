@@ -1,11 +1,12 @@
+
 import axios from "axios"
 import Noty from "noty";
 
 
-const decrementProductApi = async (pizza)=>{
+
+const incrementProductApi = async (pizza)=>{
     try{
-        const res = await axios.post("/decrement-cart", pizza);
-        // console.log(res.data)
+        const res = await axios.post("/increment-cart", pizza);
         cartCounter.innerText = res.data.totalQty
 
         //we return the value so we can use it for cart items on cart page.
@@ -31,32 +32,32 @@ const decrementProductApi = async (pizza)=>{
 }
 
 
+export const incrementProduct = () =>{
 
-
-export const decrementProduct = ()=>{
-
-    const subtractPizzas = document.querySelectorAll(".subtract-pizza");
+    // add pizza on the cart page
+    const addPizza = document.querySelectorAll(".add-pizza");
     const totalPrice = document.querySelector(".totalPrice");
 
-    subtractPizzas.forEach(btn =>{
-        btn.addEventListener("click", async(e)=> {
+    addPizza.forEach((btn)=>{
+        btn.addEventListener("click", async (e)=>{
+
             const pizza = JSON.parse(btn.dataset.pizza)
-            // console.log(pizza.item)
+            const res =  await incrementProductApi(pizza);
+            // console.log(res)
             
-            const res =  await decrementProductApi(pizza);
-            console.log(res)
+            //update the amount of products..
+            btn.parentElement.children[1].children[0].innerText= "";
+            btn.parentElement.children[1].children[0].innerText = res.itemQty;
+            
 
-            btn.nextElementSibling.children[0].innerText ="";
-            btn.nextElementSibling.children[0].innerText = res.itemQty;
-
-            btn.parentElement.nextElementSibling.children[0].innerText = "";
+            //update the price of the products
+            btn.parentElement.nextElementSibling.children[0].innerText= "";
             btn.parentElement.nextElementSibling.children[0].innerText = res.itemQty * +res.item.price
 
-            
             //update totalPrice as well
             totalPrice.innerText = "";
             totalPrice.innerText = `$ ${res.totalPrice}`
+
         })
     })
-
 }

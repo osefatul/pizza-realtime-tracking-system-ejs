@@ -2,11 +2,10 @@ import axios from "axios"
 import Noty from "noty";
 
 
-
-const deleteItem = async (pizza)=>{
+const decrementProductApi = async (pizza)=>{
     try{
-        const res = await axios.post("/remove-cart", pizza);
-        console.log(res.data);
+        const res = await axios.post("/decrement-cart", pizza);
+        // console.log(res.data)
         cartCounter.innerText = res.data.totalQty
 
         //we return the value so we can use it for cart items on cart page.
@@ -14,9 +13,10 @@ const deleteItem = async (pizza)=>{
         new Noty({
             type: 'success',
             timeout: 1000,
-            text: 'Item deleted from cart',
+            text: 'Item added to cart',
             progressBar: false,
         }).show();
+
         return res.data;
         
     }catch(err){
@@ -33,24 +33,24 @@ const deleteItem = async (pizza)=>{
 
 
 
-export const removeItemFromCart = () =>{
-    const deleteBtn = document.querySelectorAll(".deleteBtn");
+export const decrementProduct = ()=>{
+
+    const subtractPizzas = document.querySelectorAll(".subtract-pizza");
     const totalPrice = document.querySelector(".totalPrice");
 
-    //Delete Cart item
-    deleteBtn.forEach(btn =>{
-        btn.addEventListener("click", async (e) =>{
-            
+    subtractPizzas.forEach(btn =>{
+        btn.addEventListener("click", async(e)=> {
+
             const pizza = JSON.parse(btn.dataset.pizza)
+            const res =  await decrementProductApi(pizza);
 
-            //remove the item from session as well computed in the backend
-            const res = await deleteItem(pizza) 
-            console.log(res)
+            btn.nextElementSibling.children[0].innerText ="";
+            btn.nextElementSibling.children[0].innerText = res.itemQty;
 
-            // var buttonClicked = e.target;
-            // buttonClicked.parentElement.remove(); //both are same
-            btn.parentElement.remove(); // remove the div from the DOM
+            btn.parentElement.nextElementSibling.children[0].innerText = "";
+            btn.parentElement.nextElementSibling.children[0].innerText = res.itemQty * +res.item.price
 
+            
             //update totalPrice as well
             totalPrice.innerText = "";
             totalPrice.innerText = `$ ${res.totalPrice}`

@@ -3,15 +3,15 @@ import Noty from "noty";
 import { initAdmin } from "./admin";
 import { updateStatus } from "./updateStatus";
 import moment from "moment";
-import cart from "./cart";
-import { removeItemFromCart } from "./removeItemFromCart";
-import { decrementProduct } from "./decrementProduct";
+
+
+import { removeItemFromCart } from "./shoppingCartFunctionalities/removeItemFromCart";
+import { decrementProduct } from "./shoppingCartFunctionalities/decrementProduct";
+import { incrementProduct } from "./shoppingCartFunctionalities/incrementProduct";
+import { addToCart } from "./shoppingCartFunctionalities/addToCart";
 
 
 
-// array of btns
-const addTOCarts = document.querySelectorAll(".add-to-cart") 
-const cartCounter = document.querySelector("#cartCounter");
 
 
 
@@ -33,126 +33,11 @@ closeButton.onclick = ()=>{
 
 
 
-
-
-const updateCart = async (pizza)=>{
-    try{
-        const res = await axios.post("/update-cart", pizza);
-        // console.log(res.data)
-        cartCounter.innerText = res.data.totalQty
-
-        //we return the value so we can use it for cart items on cart page.
-        
-        new Noty({
-            type: 'success',
-            timeout: 1000,
-            text: 'Item added to cart',
-            progressBar: false,
-        }).show();
-
-        return res.data;
-        
-    }catch(err){
-        console.log(err)
-        new Noty({
-            type: 'error',
-            timeout: 1000,
-            text: 'Something went wrong',
-            progressBar: false,
-        }).show();
-    }
-}
-
-
-
-
-
-
-
-
-//Add cart buttons in HOME page
-addTOCarts.forEach((btn)=>{
-    btn.addEventListener("click", (e)=>{
-        // console.log(e)
-        const pizza = JSON.parse(btn.dataset.pizza)
-        console.log(btn.parentElement.parentElement)
-        updateCart(pizza);
-
-
-    })
-})
-
-
-removeItemFromCart()
-
-// cart()
-
-
-
-
-
-
-const incrementProduct = async (pizza)=>{
-    try{
-        const res = await axios.post("/increment-cart", pizza);
-        // console.log(res.data)
-        cartCounter.innerText = res.data.totalQty
-
-        //we return the value so we can use it for cart items on cart page.
-        
-        new Noty({
-            type: 'success',
-            timeout: 1000,
-            text: 'Item added to cart',
-            progressBar: false,
-        }).show();
-
-        return res.data;
-        
-    }catch(err){
-        console.log(err)
-        new Noty({
-            type: 'error',
-            timeout: 1000,
-            text: 'Something went wrong',
-            progressBar: false,
-        }).show();
-    }
-}
-
-
-
-
+// Shopping Cart Functionalities
+addToCart()
+incrementProduct()
 decrementProduct()
-
-
-// add pizza on cart page
-const addPizza = document.querySelectorAll(".add-pizza");
-const totalPrice = document.querySelector(".totalPrice");
-
-addPizza.forEach((btn)=>{
-    btn.addEventListener("click", async (e)=>{
-        const pizza = JSON.parse(btn.dataset.pizza)
-        // console.log(pizza.item)
-        const res =  await incrementProduct(pizza);
-        // console.log(res)
-        
-        //update the amount of products..
-        btn.parentElement.children[1].children[0].innerText= "";
-        btn.parentElement.children[1].children[0].innerText = res.itemQty;
-        
-
-        //update the price of the products
-        btn.parentElement.nextElementSibling.children[0].innerText= "";
-        btn.parentElement.nextElementSibling.children[0].innerText = res.itemQty * +res.item.price
-
-        //update totalPrice as well
-        totalPrice.innerText = "";
-        totalPrice.innerText = `$ ${res.totalPrice}`
-
-    })
-})
-
+removeItemFromCart()
 
 
 
