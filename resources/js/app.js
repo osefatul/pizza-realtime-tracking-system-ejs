@@ -1,4 +1,3 @@
-import axios from "axios"
 import Noty from "noty";
 import { initAdmin } from "./admin";
 import { updateStatus } from "./updateStatus";
@@ -37,9 +36,12 @@ incrementProduct()
 decrementProduct()
 removeItemFromCart()
 
+initAdmin();
+initStripe()
 
 
-//remove flash alert message after x seconds
+
+//Remove flash alert message after x seconds in the orders page
 const alertMsg = document.querySelector("#success-alert")
 // if id exists
 if(alertMsg){
@@ -54,18 +56,15 @@ let hiddenInput = document.querySelector('#hiddenInput')
 let order = hiddenInput? hiddenInput.value: null
 order = JSON.parse(order)
 
-
-//Updating order status
+//ORDER STATUS FUNCTIONALITIES..
 updateStatus(order)
 
 
+
+
+// SOCKET FUNCTIONALITY ---
 //already imported socket.io library in layout.ejs.lets call it here
-// Socket
 const socket = io();
-
-initAdmin();
-initStripe()
-
 
 // Join
 if(order) {
@@ -89,7 +88,7 @@ socket.on("orderUpdated", (data) => {
 })
 
 
-//add socket in /admin/orders page as well so it also works in realtime when order is placed.
+//Add a socket in the /admin/orders page so that it works in realtime when an order is placed
 let adminAreaPath = window.location.pathname
 if(adminAreaPath.includes('admin')) {
     initAdmin(socket)

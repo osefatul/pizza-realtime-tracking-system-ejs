@@ -349,9 +349,7 @@ body {
 .hero .vanillaContainer a {
   color: white;
   text-decoration: none;
-}
-.hero .vanillaContainer a:hover {
-  color: #b23301;
+  border: none !important;
 }
 
 .order .Logintocontinue {
@@ -389,11 +387,17 @@ body {
 }
 
 .orders {
-  min-height: 100vh;
+  min-height: calc(100vh - 80px);
+  overflow-y: auto;
 }
 
 .status {
   min-height: calc(100vh - 80px);
+}
+
+section.home {
+  background: #303030;
+  min-height: 100vh;
 }
 
 section.cart {
@@ -548,7 +552,26 @@ section.status .status-box ul li small {
   }
   .vanillaContainer {
     max-width: 100%;
-    padding: 0 4rem;
+    padding: 0 1rem;
+  }
+}
+@media (max-width: 300px) {
+  .status-box {
+    display: block;
+    overflow-x: auto;
+  }
+  .status-box ul li {
+    gap: 25px;
+  }
+  .vanillaContainer {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+  section.hero h6 {
+    font-size: 10px;
+  }
+  section.hero h1 {
+    font-size: 15px;
   }
 }
 @media (min-width: 642px) {

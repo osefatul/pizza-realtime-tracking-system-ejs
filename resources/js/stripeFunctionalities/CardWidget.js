@@ -3,14 +3,12 @@ export class CardWidget {
     constructor(stripe) {
         this.stripe = stripe
     }
-
-
     
     stripe = null
     card = null
     style = {
         base: {
-        color: '#32325d',
+        color: 'white',
         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
         fontSmoothing: 'antialiased',
         fontSize: '16px',
@@ -23,13 +21,6 @@ export class CardWidget {
         iconColor: '#fa755a'
         }
     }
-
-
-    appearance = {
-        theme: 'night',
-        labels: 'floating'
-    };
-
 
 
     mount() {

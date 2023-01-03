@@ -259,7 +259,6 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 
 
 
-
 //sidebar functionalities -----
 var toggleButton = document.querySelector(".toggleButton");
 var sidebar = document.querySelector(".sidebar");
@@ -277,8 +276,10 @@ closeButton.onclick = function () {
 (0,_shoppingCartFunctionalities_incrementProduct__WEBPACK_IMPORTED_MODULE_6__.incrementProduct)();
 (0,_shoppingCartFunctionalities_decrementProduct__WEBPACK_IMPORTED_MODULE_5__.decrementProduct)();
 (0,_shoppingCartFunctionalities_removeItemFromCart__WEBPACK_IMPORTED_MODULE_4__.removeItemFromCart)();
+(0,_admin__WEBPACK_IMPORTED_MODULE_1__.initAdmin)();
+(0,_stripeFunctionalities_stripe__WEBPACK_IMPORTED_MODULE_8__.initStripe)();
 
-//remove flash alert message after x seconds
+//Remove flash alert message after x seconds in the orders page
 var alertMsg = document.querySelector("#success-alert");
 // if id exists
 if (alertMsg) {
@@ -290,14 +291,12 @@ var hiddenInput = document.querySelector('#hiddenInput');
 var order = hiddenInput ? hiddenInput.value : null;
 order = JSON.parse(order);
 
-//Updating order status
+//ORDER STATUS FUNCTIONALITIES..
 (0,_updateStatus__WEBPACK_IMPORTED_MODULE_2__.updateStatus)(order);
 
+// SOCKET FUNCTIONALITY ---
 //already imported socket.io library in layout.ejs.lets call it here
-// Socket
 var socket = io();
-(0,_admin__WEBPACK_IMPORTED_MODULE_1__.initAdmin)();
-(0,_stripeFunctionalities_stripe__WEBPACK_IMPORTED_MODULE_8__.initStripe)();
 
 // Join
 if (order) {
@@ -318,7 +317,7 @@ socket.on("orderUpdated", function (data) {
   }).show();
 });
 
-//add socket in /admin/orders page as well so it also works in realtime when order is placed.
+//Add a socket in the /admin/orders page so that it works in realtime when an order is placed
 var adminAreaPath = window.location.pathname;
 if (adminAreaPath.includes('admin')) {
   (0,_admin__WEBPACK_IMPORTED_MODULE_1__.initAdmin)(socket);
@@ -740,7 +739,7 @@ var CardWidget = /*#__PURE__*/function () {
     _defineProperty(this, "card", null);
     _defineProperty(this, "style", {
       base: {
-        color: '#32325d',
+        color: 'white',
         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
         fontSmoothing: 'antialiased',
         fontSize: '16px',
@@ -752,10 +751,6 @@ var CardWidget = /*#__PURE__*/function () {
         color: '#fa755a',
         iconColor: '#fa755a'
       }
-    });
-    _defineProperty(this, "appearance", {
-      theme: 'night',
-      labels: 'floating'
     });
     this.stripe = stripe;
   }
