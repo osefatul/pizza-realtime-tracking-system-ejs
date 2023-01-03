@@ -8,6 +8,10 @@ const orderController = ()=>{
 
     return {
         async store(req, res){
+
+            console.log(req.body);
+            return;
+            
             //validate order
             const {phone, address, paymentType} = req.body;
             // console.log(req.body)

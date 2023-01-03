@@ -30,6 +30,7 @@ const initRoute = (app)=>{
     app.post("/register", authController().postRegister);
     app.post('/logout', authController().logout)
 
+    //cart
     app.get("/cart", cartController().cart)
     app.post("/update-cart", cartController().updateCart)
     app.post("/remove-cart", cartController().removeCart)
