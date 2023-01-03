@@ -9,7 +9,7 @@ import { removeItemFromCart } from "./shoppingCartFunctionalities/removeItemFrom
 import { decrementProduct } from "./shoppingCartFunctionalities/decrementProduct";
 import { incrementProduct } from "./shoppingCartFunctionalities/incrementProduct";
 import { addToCart } from "./shoppingCartFunctionalities/addToCart";
-import { initStripe } from "./stripe";
+import { initStripe } from "./stripeFunctionalities/stripe";
 
 
 

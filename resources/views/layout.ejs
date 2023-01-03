@@ -28,11 +28,13 @@
             <div class="hidden sm:flex">
                 <ul class="flex items-center space-x-4">
                     <% if(user && user?.role === 'admin') {%>
+                    <li><a href="/">Menu</a></li>
                     <li><a href="/admin/orders">Orders</a></li>
                     <% } else if(user) {%>
+                    <li><a href="/">Menu</a></li>
                     <li><a href="/customer/orders">Orders</a></li>
                     <% }%>
-                    <li><a href="/">Menu</a></li>
+
                     <% if(user) { %>
                         <li class="ml-6">
                             <form id="logout" action="/logout" method="POST">
@@ -68,11 +70,12 @@
             </button>
 
             <% if(user?.role === 'admin') {%>
+            <li><a href="/">Menu</a></li>
             <li><a href="/admin/orders">Orders</a></li>
             <% } else {%>
+            <li><a href="/">Menu</a></li>
             <li><a href="/customer/orders">Orders</a></li>
             <% }%>
-            <li><a href="/">Menu</a></li>
             <% if(user) { %>
                 <li class="">
                     <form id="logout" action="/logout" method="POST">
