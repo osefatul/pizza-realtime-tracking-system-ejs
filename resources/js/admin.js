@@ -39,9 +39,11 @@ export const initAdmin = (socket) =>{
 
     function renderItems(items) {
         let parsedItems = Object.values(items)
-        return parsedItems.map((menuItem) => {
+
+        console.log(items)
+        return items?.map((item) => {
             return `
-                <p>${ menuItem.item.name } - ${ menuItem.qty } pcs </p>
+                <p>${ item?.name } - ${ item.qty } pcs </p>
             `
         }).join('')
     }
@@ -49,15 +51,15 @@ export const initAdmin = (socket) =>{
 
 
     const generateMarkup = (orders) =>{
-        return orders.map((order) => {
+        return orders?.map((order) => {
             return `
                 <tr class="">
                 <td class="border px-4 py-2 text-[#fe5f1e]">
                     <p>${ order._id }</p>
-                    <div>${ renderItems(order.items) }</div>
+                    <div>${ renderItems(order?.items) }</div>
                 </td>
-                <td class="border px-4 py-2">${ order.customerId.name }</td>
-                <td class="border px-4 py-2">${ order.address }</td>
+                <td class="border px-4 py-2">${ order?.customerId?.name }</td>
+                <td class="border px-4 py-2">${ order?.address }</td>
                 <td class="border px-4 py-2">
                     <div class="inline-block relative w-64">
                         <form action="/admin/order/status" method="POST">

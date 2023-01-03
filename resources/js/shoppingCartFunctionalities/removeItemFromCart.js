@@ -6,7 +6,7 @@ import Noty from "noty";
 const deleteItem = async (pizza)=>{
     try{
         const res = await axios.post("/remove-cart", pizza);
-        console.log(res.data);
+        // console.log(res.data);
         cartCounter.innerText = res.data.totalQty
         //we return the value so we can use it for cart items on cart page.
         

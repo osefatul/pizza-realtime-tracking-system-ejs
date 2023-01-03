@@ -81,6 +81,7 @@ const cartController = ()=>{
             cart.totalQty = cart.totalQty - 1
             cart.totalPrice = +cart.totalPrice - +req.body.price
 
+            console.log(cart.items[existingIndex])
             return res.json({ 
                 totalQty: req.session.cart?.totalQty,
                 totalPrice: req.session.cart.totalPrice, 
@@ -92,6 +93,10 @@ const cartController = ()=>{
 
         removeCart (req, res){
             let cart = req.session.cart;
+            const existingIndex = cart.items.findIndex(item => item._id === req.body._id);
+
+            req.session.cart.totalQty = cart.totalQty - cart.items[existingIndex].qty;
+            req.session.cart.totalPrice = +cart.totalPrice - (+cart.items[existingIndex].price * cart.items[existingIndex].qty);
 
             req.session.cart.items.map((cartItem) => {
                 if(cartItem._id === req.body._id){
@@ -99,9 +104,6 @@ const cartController = ()=>{
                     cart.items = nextCartItem
                 }
             })
-
-            req.session.cart.totalQty = cart.totalQty - req.body.qty;
-            req.session.cart.totalPrice = +cart.totalPrice - (+req.body.price * req.body.qty);
 
             return res.json({ 
                 totalPrice: req.session.cart.totalPrice,

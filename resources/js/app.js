@@ -9,9 +9,7 @@ import { removeItemFromCart } from "./shoppingCartFunctionalities/removeItemFrom
 import { decrementProduct } from "./shoppingCartFunctionalities/decrementProduct";
 import { incrementProduct } from "./shoppingCartFunctionalities/incrementProduct";
 import { addToCart } from "./shoppingCartFunctionalities/addToCart";
-
-
-
+import { initStripe } from "./stripe";
 
 
 
@@ -61,11 +59,12 @@ order = JSON.parse(order)
 updateStatus(order)
 
 
-//As we already imported our socket.io library in layout.ejs.lets call it here
+//already imported socket.io library in layout.ejs.lets call it here
 // Socket
 const socket = io();
-//call initAdmin
+
 initAdmin();
+initStripe()
 
 
 // Join
